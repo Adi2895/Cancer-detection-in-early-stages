@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cancer Detection</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        .header {
+            background-color: #007bff;
+            color: #fff;
+            padding: 10px;
+            text-align: center;
+        }
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .team-members {
+            margin-top: 20px;
+        }
+        .team-member {
+            margin-bottom: 10px;
+        }
+        .button {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .result {
+            margin-top: 20px;
+        }
+        .result img {
+            display: block;
+            margin: 0 auto;
+            max-width: 100%;
+            height: auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>CANCER DETECTION PROJECT</h1>
+        <h3>Panipat Instiute of Engineering And Technology</h3>
+    </div>
+    <div class="container">
+        <div class="team-members">
+            <div class="team-member">
+                <strong>Team Leader : Paridhi Goyal</strong> - Roll Number: 2231320
+            </div>
+            <div class="team-member">
+                <strong>Aditya Jangra</strong> - Roll Number: 2821303
+            </div>
+            <div class="team-member">
+                <strong>Hariom Gupta</strong> - Roll Number: 28821312
+            </div>
+            <!-- Add more team members here -->
+        </div>
+        <form id="dataForm">
+            <button type="submit" class="button">Get Results</button>
+        </form>
+        <div id="output" class="result"></div>
+    </div>
+
+    <!-- JavaScript function to get data from Python file -->
+    <script>
+        document.getElementById('dataForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            fetch('/get_results', {
+                method: 'POST'
+            })
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('output').innerHTML = data;
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+        });
+    </script>
+</body>
+</html>
